@@ -1,5 +1,7 @@
 package order
 
+import "fmt"
+
 // Source is used to load book order data
 type Source interface {
 	// Book returns current book value
@@ -21,8 +23,8 @@ type Order struct {
 	Quantity float64
 }
 
-func (o Order) String() {
-
+func (o Order) String() string {
+	return fmt.Sprintf("%.8f: %.8f", o.Price, o.Quantity)
 }
 
 // Book represents all market orders for single symbol

@@ -1,10 +1,15 @@
 package market
 
+import (
+	"github.com/bloc4ain/cryptocgo/binance"
+	"github.com/bloc4ain/cryptocgo/order"
+)
+
 // Card represents cryptocurrency market brief info
 type Card interface {
 	Title() string
-	Top() []string
-	Updates() <-chan []string
+	OrderBook() *order.Book
+	Updates() <-chan *order.Book
 }
 
 // BinanceCard represents Binance market brief info
@@ -16,18 +21,16 @@ func (c BinanceCard) Title() string {
 	return "Binance"
 }
 
-// Top returns Binance top most expensive currencies
-func (c BinanceCard) Top() []string {
-	return []string{
-		"TRX/BTC",
-		"ETH/BTC",
-		"ONT/BTC",
-	}
+// OrderBook returns Binance top most expensive currencies
+func (c BinanceCard) OrderBook() *order.Book {
+	src := binance.NewOrderBookSource("TRXBTC")
+	book, _ := src.Book()
+	return book
 }
 
 // Updates subscribes for top most expensive currencies updates
-func (c BinanceCard) Updates() <-chan []string {
-	return make(chan []string)
+func (c BinanceCard) Updates() <-chan *order.Book {
+	return make(chan *order.Book)
 }
 
 // BittrexCard represents Bittrex market brief info
@@ -39,18 +42,14 @@ func (c BittrexCard) Title() string {
 	return "Bittrex"
 }
 
-// Top returns Bittrex top most expensive currencies
-func (c BittrexCard) Top() []string {
-	return []string{
-		"TRX/BTC",
-		"ETH/BTC",
-		"ONT/BTC",
-	}
+// OrderBook returns Bittrex top most expensive currencies
+func (c BittrexCard) OrderBook() *order.Book {
+	return nil
 }
 
 // Updates subscribes for top most expensive currencies updates
-func (c BittrexCard) Updates() <-chan []string {
-	return make(chan []string)
+func (c BittrexCard) Updates() <-chan *order.Book {
+	return make(chan *order.Book)
 }
 
 // KuCoinCard represents KuCoin market brief info
@@ -62,16 +61,12 @@ func (c KuCoinCard) Title() string {
 	return "KuCoin"
 }
 
-// Top returns KuCoin top most expensive currencies
-func (c KuCoinCard) Top() []string {
-	return []string{
-		"TRX/BTC",
-		"ETH/BTC",
-		"ONT/BTC",
-	}
+// OrderBook returns KuCoin top most expensive currencies
+func (c KuCoinCard) OrderBook() *order.Book {
+	return nil
 }
 
 // Updates subscribes for top most expensive currencies updates
-func (c KuCoinCard) Updates() <-chan []string {
-	return make(chan []string)
+func (c KuCoinCard) Updates() <-chan *order.Book {
+	return make(chan *order.Book)
 }

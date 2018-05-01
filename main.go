@@ -1,11 +1,11 @@
 package main
 
 import (
+	"github.com/bloc4ain/cryptocgo/binance"
 	"github.com/bloc4ain/cryptocgo/webui"
 )
 
 func main() {
-	// binance.StartSync("TRXBTC")
 
 	// src := binance.NewOrderBookSource("TRXBTC")
 	// stream, err := src.Updates()
@@ -19,5 +19,6 @@ func main() {
 	// 	fmt.Println("Got new book for symbol", book.Symbol)
 	// }
 
+	binance.StartSync("TRXBTC")
 	webui.Start()
 }

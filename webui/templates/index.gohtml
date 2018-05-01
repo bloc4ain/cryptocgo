@@ -44,116 +44,32 @@
 
         <section id="markets" class="container">
             <div class="row animated fadeInUp">
-                {{ range $index, $value := .MarketCards }}
-                    <div class="col-md-4">
-                        <div class="card mb-4" style="box-shadow:0 15px 31px #000;">
-                            <h3 class="card-header">{{ $value.Title }}</h3>
+                {{ range $index, $book := .Books }}
+                <div class="col-md-6">
+                    <div class="card mb-6" style="box-shadow:0 15px 31px #000;">
+                        <h3 class="card-header">{{ $book.Symbol }}</h3>
 
-                            <div class="card-body">
-                                <h5 class="card-title">Special title treatment</h5>
-                                <h6 class="card-subtitle text-muted">Support card subtitle</h6>
-                            </div>
-
-                            <div class="card-body">
-                                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                            </div>
-
-                            <ul class="list-group list-group-flush">
-                                <li class="list-group-item">Cras justo odio</li>
-                                <li class="list-group-item">Dapibus ac facilisis in</li>
-                                <li class="list-group-item">Vestibulum at eros</li>
-                            </ul>
-                            <div class="card-body">
-                                <a href="#" class="card-link">Card link</a>
-                                <a href="#" class="card-link">Another link</a>
-                            </div>
-                            <div class="card-footer text-muted">
-                                2 days ago
-                            </div>
+                        <div class="card-body">
+                            <h5 class="card-title">Special title treatment</h5>
+                            <h6 class="card-subtitle text-muted">Support card subtitle</h6>
                         </div>
+
+                        <div class="card-body">
+                            <span class="float-left">Bids</span>
+                            <span class="float-right">Asks</span>
+                            <p class="card-text"></p>
+                        </div>
+
+                        <ul id="listtt" class="list-group list-group-flush">
+                            {{ range $index1, $bid := $book.Bids }}
+                            <li class="list-group-item">
+                                 {{ $bid.String }}
+                            </li>
+                            {{ end }}
+                        </ul>
                     </div>
+                </div>
                 {{ end }}
-                <!--<div class="col-md-4">
-                    <div class="card mb-4" style="box-shadow:0 15px 31px #000;">
-                        <h3 class="card-header">Binance</h3>
-
-                        <div class="card-body">
-                            <h5 class="card-title">Special title treatment</h5>
-                            <h6 class="card-subtitle text-muted">Support card subtitle</h6>
-                        </div>
-
-                        <div class="card-body">
-                            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                        </div>
-
-                        <ul class="list-group list-group-flush">
-                            <li class="list-group-item">Cras justo odio</li>
-                            <li class="list-group-item">Dapibus ac facilisis in</li>
-                            <li class="list-group-item">Vestibulum at eros</li>
-                        </ul>
-                        <div class="card-body">
-                            <a href="#" class="card-link">Card link</a>
-                            <a href="#" class="card-link">Another link</a>
-                        </div>
-                        <div class="card-footer text-muted">
-                            2 days ago
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-4">
-                    <div class="card mb-4" style="box-shadow:0 15px 31px #000;">
-                        <h3 class="card-header">Bittrex</h3>
-
-                        <div class="card-body">
-                            <h5 class="card-title">Special title treatment</h5>
-                            <h6 class="card-subtitle text-muted">Support card subtitle</h6>
-                        </div>
-
-                        <div class="card-body">
-                            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                        </div>
-
-                        <ul class="list-group list-group-flush">
-                            <li class="list-group-item">Cras justo odio</li>
-                            <li class="list-group-item">Dapibus ac facilisis in</li>
-                            <li class="list-group-item">Vestibulum at eros</li>
-                        </ul>
-                        <div class="card-body">
-                            <a href="#" class="card-link">Card link</a>
-                            <a href="#" class="card-link">Another link</a>
-                        </div>
-                        <div class="card-footer text-muted">
-                            2 days ago
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-4">
-                    <div class="card mb-4" style="box-shadow:0 15px 31px #000;">
-                        <h3 class="card-header">CuKoin</h3>
-
-                        <div class="card-body">
-                            <h5 class="card-title">Special title treatment</h5>
-                            <h6 class="card-subtitle text-muted">Support card subtitle</h6>
-                        </div>
-
-                        <div class="card-body">
-                            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                        </div>
-
-                        <ul class="list-group list-group-flush">
-                            <li class="list-group-item">Cras justo odio</li>
-                            <li class="list-group-item">Dapibus ac facilisis in</li>
-                            <li class="list-group-item">Vestibulum at eros</li>
-                        </ul>
-                        <div class="card-body">
-                            <a href="#" class="card-link">Card link</a>
-                            <a href="#" class="card-link">Another link</a>
-                        </div>
-                        <div class="card-footer text-muted">
-                            2 days ago
-                        </div>
-                    </div>
-                </div>-->
             </div>
         </section>
 
@@ -161,19 +77,12 @@
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js" integrity="sha384-smHYKdLADwkXOn1EmN1qk/HfnUcbVRZyYmZ4qpPea6sjB/pTJ0euyQp0Mk8ck+5T" crossorigin="anonymous"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
         <script>
-            function setMargins() {
-                width = $("#markets").width();
-                containerWidth = $("#down-arrow").width();  
-                leftMargin = (width-containerWidth)/2;    
-                $("#down-arrow").css("left", leftMargin);    
-            }
-
-            $(document).ready(function() {
-                setMargins();
-                $(window).resize(setMargins);
-                $("#down-arrow").css("visibility", "visible");
-                $("#down-arrow").click(() => window.location.hash = "#markets");
-            });
+            let socket = new WebSocket("ws://localhost:4040/asd");
+            socket.onmessage = function(msg) {
+                let book = JSON.parse(msg.data);
+                let bids = book.Bids.map(bid => `<li class="list-group-item">${bid.Price}: ${bid.Quantity}</li>`).join("")
+                $("#listtt").html(bids);
+            };
         </script>
     </body>
 </html>

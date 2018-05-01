@@ -11,6 +11,8 @@ func NewRouter() *mux.Router {
 	r := mux.NewRouter()
 
 	r.HandleFunc("/", indexHandler)
+	r.HandleFunc("/dd", indexHandler)
+	r.HandleFunc("/asd", ws)
 	r.PathPrefix("/").Handler(http.FileServer(http.Dir("webui/static")))
 
 	// r.HandleFunc("/active", activeIndexHandler)
@@ -21,11 +23,14 @@ func NewRouter() *mux.Router {
 	// r.HandleFunc("/clear", clearHandler)
 
 	// // Add handler for websocket server
-	// r.Handle("/ws/all", newChangesHandler(allChanges))
 	// r.Handle("/ws/active", newChangesHandler(activeChanges))
 	// r.Handle("/ws/completed", newChangesHandler(completedChanges))
 
 	// Add handler for static files
 
 	return r
+}
+
+func newChangesHandler() http.HandlerFunc {
+	return wsHandler()
 }

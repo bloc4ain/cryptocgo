@@ -19,7 +19,7 @@ type OrderBookSource struct {
 // Book returns current book value
 func (obs *OrderBookSource) Book() (*order.Book, error) {
 	book := new(order.Book)
-	err := r.DB("binance").Table("orderBooks").GetAllByIndex("symbol", obs.symbol).ReadOne(book, dbSession)
+	err := r.DB("binance").Table("orderBooks").GetAllByIndex("Symbol", obs.symbol).ReadOne(book, dbSession)
 	return book, err
 }
 

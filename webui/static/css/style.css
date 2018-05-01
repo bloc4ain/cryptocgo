@@ -1,0 +1,22 @@
+html, body {
+    width: 100%;
+    height: 100%;
+    overflow-x: hidden;
+    transition: all 0.6s ease-in-out;
+}
+
+body {
+    /* background: #94525A; */
+    /* background: -webkit-radial-gradient(95% 10%, farthest-corner, #94525A, #181528); */
+    background-image: linear-gradient(to right top, #000000, #15000c, #1d021a, #1d072a, #0b0f3d);
+}
+
+header.jumbotron {
+    background-color: rgba(100, 100, 100, .2)
+}
+
+header.jumbotron iframe {
+    border: none;
+    width: 100%;
+    height: 500px;
+}

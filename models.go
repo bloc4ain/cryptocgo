@@ -27,7 +27,7 @@ type Ticker struct {
 }
 
 func (t Ticker) String() string {
-	return fmt.Sprintf("Ticker[Symbol:%s;Price:%.8f;LowPrice:%.8f;BaseVolume:%.8f;QuoteVolume:%.8f]",
+	return fmt.Sprintf("Ticker[Symbol:%s;Price:%.8f;LowPrice:%.8f;HighPrice:%.8f;BaseVolume:%.8f;QuoteVolume:%.8f]",
 		t.Symbol, t.Price, t.LowPrice, t.HighPrice, t.BaseVolume, t.QuoteVolume)
 }
 

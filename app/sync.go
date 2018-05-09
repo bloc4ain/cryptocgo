@@ -1,6 +1,7 @@
 package app
 
 import (
+	"fmt"
 	"log"
 	"sync"
 	"time"
@@ -27,17 +28,22 @@ func syncSymbols() {
 		go func(m cryptocgo.Market) {
 			defer wg.Done()
 
-			if s, err := m.Symbols(); err == nil {
-				mx.Lock()
-				ms = append(ms, marketSymbols{market: m.Name(), symbols: s})
-				mx.Unlock()
-				log.Printf("Symbol sync for market [%s] completed", m.Name())
-			} else {
-				log.Printf("Could not fetch symbols for market [%s]: %s", m.Name(), err)
+			for {
+				if s, err := m.Symbols(); err == nil {
+					mx.Lock()
+					ms = append(ms, marketSymbols{market: m.Name(), symbols: s})
+					mx.Unlock()
+					log.Printf("Symbol sync for market [%s] completed", m.Name())
+					break
+				} else {
+					log.Printf("Could not fetch symbols for market [%s]: %s", m.Name(), err)
+					time.Sleep(time.Second * 5)
+				}
 			}
 		}(m)
 	}
 
 	wg.Wait()
 	log.Printf("Sync completed in %s", shortDuration(time.Since(st)))
+	fmt.Println(ms)
 }

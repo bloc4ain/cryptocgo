@@ -5,7 +5,8 @@ import (
 )
 
 var markets = make(map[string]cryptocgo.Market)
-var processors = make([]cryptocgo.Processor, 0)
+
+// var processors = make([]cryptocgo.Processor, 0)
 
 // AddMarket registers market in the system
 func AddMarket(m cryptocgo.Market) {
@@ -28,18 +29,18 @@ func MarketList() []cryptocgo.Market {
 }
 
 // AddProcessor registers processor in the system
-func AddProcessor(p cryptocgo.Processor) {
-	if p == nil {
-		panic("Cannot add nil processor")
-	}
-}
+// func AddProcessor(p cryptocgo.Processor) {
+// 	if p == nil {
+// 		panic("Cannot add nil processor")
+// 	}
+// }
 
-// ProcessorList returns list of all registered processors in the system
-func ProcessorList() []cryptocgo.Processor {
-	r := make([]cryptocgo.Processor, len(processors))
-	copy(r, processors)
-	return r
-}
+// // ProcessorList returns list of all registered processors in the system
+// func ProcessorList() []cryptocgo.Processor {
+// 	r := make([]cryptocgo.Processor, len(processors))
+// 	copy(r, processors)
+// 	return r
+// }
 
 // Run starts the controller process
 func Run() {
